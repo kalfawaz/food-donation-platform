@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <span class="brand">Food Donation Platform</span>
+
+  @if (auth.currentUser(); as user) {
+    @if (user.role === 'DONOR') {
+      <a routerLink="/donations/new">New Donation</a>
+      <a routerLink="/donations/mine">My Donations</a>
+    }
+    @if (user.role === 'CHARITY' || user.role === 'ADMIN') {
+      <a routerLink="/donations">Available Donations</a>
+    }
+    <span class="spacer"></span>
+    <span class="user">{{ user.name }} ({{ user.role }})</span>
+    <button class="secondary" (click)="logout()">Logout</button>
+  } @else {
+    <span class="spacer"></span>
+    <a routerLink="/login">Log in</a>
+    <a routerLink="/register">Register</a>
+  }
+</nav>
+
+<main class="page">
+  <router-outlet />
+</main>

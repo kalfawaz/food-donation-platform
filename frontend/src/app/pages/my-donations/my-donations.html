@@ -1,0 +1,20 @@
+<h1>My Donations</h1>
+<p><a routerLink="/donations/new">+ Create a new donation</a></p>
+@if (error) { <p class="error">{{ error }}</p> }
+
+@if (donations.length === 0) {
+  <p>You have not published any donations yet.</p>
+} @else {
+  <table>
+    <tr><th>Food</th><th>Category</th><th>Quantity</th><th>Expires</th><th>Status</th></tr>
+    @for (d of donations; track d.donationId) {
+      <tr>
+        <td>{{ d.foodType }}</td>
+        <td>{{ d.category }}</td>
+        <td>{{ d.quantity }}</td>
+        <td>{{ d.expiresAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td><span class="status">{{ d.status }}</span></td>
+      </tr>
+    }
+  </table>
+}

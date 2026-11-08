@@ -1,0 +1,20 @@
+<h1>Available Donations</h1>
+@if (error) { <p class="error">{{ error }}</p> }
+
+@if (donations.length === 0) {
+  <p>No donations are available right now.</p>
+} @else {
+  <table>
+    <tr><th>Food</th><th>Category</th><th>Quantity</th><th>Pickup location</th><th>Expires</th><th>Donor</th></tr>
+    @for (d of donations; track d.donationId) {
+      <tr>
+        <td>{{ d.foodType }}</td>
+        <td>{{ d.category }}</td>
+        <td>{{ d.quantity }}</td>
+        <td>{{ d.pickupLocation }}</td>
+        <td>{{ d.expiresAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ d.donorName }}</td>
+      </tr>
+    }
+  </table>
+}
